@@ -48,8 +48,10 @@
 - (void)updateDetailsWithInfo:(NSDictionary *)info
 {
     self.username = [[NSString alloc] initWithString:info[kUsername]];
-    self.fullName = [[NSString alloc] initWithString:info[kFullName]];
-    
+//    self.fullName = [[NSString alloc] initWithString:info[kFullName]];
+    NSString *fullName = info[kFullName];
+    self.fullName = IKNotNull(fullName) ? [[NSString alloc] initWithString:fullName] : nil;
+
     self.profilePictureURL = (IKNotNull(info[kProfilePictureURL])) ? [[NSURL alloc] initWithString:info[kProfilePictureURL]] : nil;
     self.bio = (IKNotNull(info[kBio])) ? [[NSString alloc] initWithString:info[kBio]] : nil;
     self.website = (IKNotNull(info[kWebsite])) ? [[NSURL alloc] initWithString:info[kWebsite]] : nil;
